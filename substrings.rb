@@ -3,33 +3,41 @@
 # Also, make sure the method can handle the searching of multiple words.
 
 word = "below"
-word2 = "partner"
+word = word.split # Converted single word to array
+
+word2 = "Howdy partner, sit down! How's it going?"
+word2 = word2.split(' ') # Converted multiple words to array
+
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 count = 0
-i = 0
+hash = {}
 
-# Iterate through the array to count the number of times the string "below" is contained in the array
 
-while i < dictionary.length
+def substring(word, dictionary)
+    
+    
+    hash = {}
 
-    if dictionary.include?(word)
+    if word.length == 1
 
-        dictionary.each { |words| 
+        count = dictionary.count(word[0]) # store count for word
+        hash.store(word[0], count) # push this word(key) and hash value(count) in hash
+     
+    else
+        word.each{ |value|
+            
+            count = dictionary.count(value) # store count for word
+            hash.store(value, count) # push this word(key) and hash value(count) in hash
 
-            if words == word 
-
-                count += 1
-            end
 
         }
 
     end
-
-    puts "#{word}"
-    puts "Word Count: #{count}"
-
-    i += 1
+    puts "#{hash}"
 
 end
 
-# push values to hash listing
+
+
+substring(word, dictionary)
+substring(word2, dictionary)
