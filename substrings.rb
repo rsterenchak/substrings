@@ -1,91 +1,63 @@
 # substrings.rb
-# This method will take in a word as the first argument and an array of valid substrings as the second argument. I should return a hash, listing each substring(case insensitive) that was found in the original string and how many times it was found in the array. 
+# This method will take in a word as the first argument and an array of valid substrings as the second argument. It should return a hash, listing each substring(case insensitive) that was found in the original string and how many times it was found in the array. 
 # Also, make sure the method can handle the searching of multiple words.
 
 require 'pry'
 
-# word = "how".downcase
-# word = word.split 
+# Single word case
+word = "Howdy".downcase
+word = word.split
 
-word = "Howdy partner, sit down! How's it going?".downcase
-# word = "Howdy How's".downcase
-word = word.tr('?' && '!', '').split(' ') # Converted multiple words to array
+# Multi word case
+word2 = "Howdy partner, sit down! How's it going?".downcase
+word2 = word2.tr('?' && '!', '').split(' ') 
 
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 count = 0
-hash = {}
 
 
+# START METHOD
+def substring(word, dictionary)
 
-word.each{ |word_array| # ITERATES THROUGH WORD ARRAY 
+    hash = {}
 
-    word = word_array 
+    word.each{ |word_array| # ITERATES THROUGH WORD ARRAY 
 
-    dictionary.each{ |value| # ITERATES THROUGH DICTIONARY ARRAY
-        
-        count = 0
-        contains = word.include?(value)
+        word = word_array 
 
-        puts "#{word} conditional check"
-
-        if contains ==  true && hash.key?(value) == false # find out how to access hash key correctly to check whether that hash exists
+        dictionary.each{ |value| # ITERATES THROUGH DICTIONARY ARRAY
             
-            count = 1
-            hash.store(value, count)
+            count = 0
+            contains = word.include?(value)
 
-            puts hash
-            puts "#{word} includes word #{value} in if"
-            
-        elsif contains ==  true 
-            
-            
-            puts "#{word} includes word #{value} in elsif"
+            if contains ==  true && hash.key?(value) == false # find out how to access hash key correctly to check whether that hash exists
+                
+                count = 1
+                hash.store(value, count)
 
-            hash[value] += 1
-            
-            puts hash
-
-        end
-
-    } # Ends dictionary 'each' check
-
-}
-
-puts "#{hash}"
-
-
-
-
-
-
-
-
-# START METHOD 
-# def substring(word, dictionary)
+            elsif contains ==  true 
+                
+                hash[value] += 1
     
-    
-#     hash = {}
+            end
 
-#     if word.length == 1
+        } # Ends dictionary 'each' check
 
-#         count = dictionary.count(word[0]) # store count for word
-#         hash.store(word[0], count) # push this word(key) and hash value(count) in hash
-     
-#     else
-#         word.each{ |value|
-            
-#             count = dictionary.count(value) # store count for word
-#             hash.store(value, count) # push this word(key) and hash value(count) in hash
+    }
 
-#         }
+    puts "#{hash}"
 
-#     end
+end # ENDS METHOD
 
-#     puts "#{hash}"
+puts "\n"
 
-# end
-# END METHOD 
+puts "The following is the number of dictionary words contained in the inputted strings: "
+puts "\n"
 
+puts "String_array 1: #{word}"
+substring(word, dictionary)
+puts "\n"
 
-# substring(word, dictionary)
-# substring(word2, dictionary)
+puts "String_array 2: #{word2}"
+substring(word2, dictionary)
+puts "\n"
